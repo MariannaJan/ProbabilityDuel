@@ -1,4 +1,7 @@
+import { Character } from './character.model';
 import { Component, OnInit } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-main-content',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContentComponent implements OnInit {
 
-  constructor() { }
+  player1: Character;
+
+  constructor() {}
 
   ngOnInit() {
+    this.player1 = new Character('Alice', 'Elf', 'Archer', 5, 18);
   }
 
 }
