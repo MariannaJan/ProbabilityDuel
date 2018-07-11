@@ -1,3 +1,4 @@
+import { ChartsModule } from 'ng2-charts';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,6 +9,7 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
 import { MainContentComponent } from './main-content/main-content.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +18,8 @@ import { MainContentComponent } from './main-content/main-content.component';
     MainContentComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

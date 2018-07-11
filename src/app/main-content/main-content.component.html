@@ -1,6 +1,34 @@
+<div>
 Player 1:
 Name: {{ player1.name}} 
-Race: {{ player1.dexModifier }}
+Race: {{ player1.race }}
+Class: {{ player1.chClass }}
+Strength: {{ player1.strength}} Strength Modifier: {{ player1.strModifier }}
+Dexterity: {{player1.dexterity }} Dexterity Modifier: {{ player1.dexModifier }}
+</div>
+<div>
+    Player 2:
+    Name: {{ player2.name}} 
+    Race: {{ player2.race }}
+    Class: {{ player2.chClass }}
+    Strength: {{ player2.strength}} Strength Modifier: {{ player2.strModifier }}
+    Dexterity: {{player2.dexterity }} Dexterity Modifier: {{ player2.dexModifier }}
+    </div>
+<div>
+Probability of player 1 having initiative: {{ player1InitiativeProbability }} %
+Probability of player 2 having initiative: {{ player2InitiativeProbability }} %
+Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %
+</div>
 
-{{ player1.dexModifier }}
-{{ player1.strModifier }}
+<h6>Probability of succes of initiative roll vs opponent with dexterity = 10</h6>
+<div style="width: 40%;">
+    <canvas
+        baseChart
+        [chartType]="'bar'"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartClick)="onChartClick($event)">
+    </canvas>
+  </div>
