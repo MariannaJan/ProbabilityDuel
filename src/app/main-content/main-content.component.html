@@ -20,15 +20,6 @@ Probability of player 2 having initiative: {{ player2InitiativeProbability }} %
 Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %
 </div>
 
-<h6>Probability of succes of initiative roll vs opponent with dexterity = 10</h6>
-<div style="width: 40%;">
-    <canvas
-        baseChart
-        [chartType]="'bar'"
-        [datasets]="chartData"
-        [labels]="chartLabels"
-        [options]="chartOptions"
-        [legend]="true"
-        (chartClick)="onChartClick($event)">
-    </canvas>
-  </div>
+<app-initiative></app-initiative>
+
+
