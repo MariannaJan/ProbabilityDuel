@@ -1,6 +1,8 @@
+import { MeleWeapon, damageTypes, numberOfDice } from './weapon.model';
 import { Character } from './character.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { InitiativeComponent } from './initiative/initiative.component';
+
 
 
 
@@ -15,6 +17,7 @@ export class MainContentComponent implements OnInit {
 
   player1: Character;
   player2: Character;
+  mace: MeleWeapon;
 
   player1InitiativeProbability: number;
   player2InitiativeProbability: number;
@@ -25,6 +28,7 @@ export class MainContentComponent implements OnInit {
   ngOnInit() {
     this.player1 = new Character('Alice', 'Elf', 'Rogue', 5, 18);
     this.player2 = new Character('Conrad', 'Human', 'Fighter', 16, 10);
+    this.mace = new MeleWeapon(numberOfDice.TWO, 10);
 
     const initiative = this.child.countInitiative(this.player1.dexterity, this.player2.dexterity);
     this.player1InitiativeProbability = initiative.probPlayer1;
