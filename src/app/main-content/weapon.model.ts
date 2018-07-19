@@ -9,7 +9,7 @@ export const enum numberOfDice {
     TWO
 }
 
-class Weapon {
+export class Weapon {
 
 // damage type
     private _damageType: damageTypes;
@@ -82,8 +82,3 @@ class Weapon {
     }
 }
 
-export class MeleWeapon extends Weapon {
-    constructor (numD, diceS) {
-        super(damageTypes.BLUDGEONING, numD, diceS);
-    }
-}

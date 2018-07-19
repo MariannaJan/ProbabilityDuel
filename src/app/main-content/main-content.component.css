@@ -1,0 +1,40 @@
+#banner {
+    background-image: url("../../assets/app-banner_warped.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100px;
+}
+
+
+#main_content {
+    color: black; 
+    background: url("../../assets/app-background-bg_circ_fullHD.jpg"); 
+    -moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+  }
+
+#barbarian {
+    background-image: url("../../assets/app-background-barb.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+#dwarf {
+    background-image: url("../../assets/app-background-dwarf.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+}
+
+.stats {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.stats li:first-child {
+    font-weight: bold;
+}

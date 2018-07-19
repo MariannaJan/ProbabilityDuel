@@ -1,28 +1,57 @@
-<div>
-Player 1:
-Name: {{ player1.name}} 
-Race: {{ player1.race }}
-Class: {{ player1.chClass }}
-Strength: {{ player1.strength}} Strength Modifier: {{ player1.strModifier }}
-Dexterity: {{player1.dexterity }} Dexterity Modifier: {{ player1.dexModifier }}
-</div>
-<div>
-    Player 2:
-    Name: {{ player2.name}} 
-    Race: {{ player2.race }}
-    Class: {{ player2.chClass }}
-    Strength: {{ player2.strength}} Strength Modifier: {{ player2.strModifier }}
-    Dexterity: {{player2.dexterity }} Dexterity Modifier: {{ player2.dexModifier }}
+<div class="container-fluid" id="main_content">
+
+  <div class="container">
+    <div class="row" id="banner"></div>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="stats">
+          <li>Player 1: {{ player1.name}}</li>
+          <li>Race: {{ player1.race }}</li>
+          <li>Class: {{ player1.chClass }}</li>
+          <li>Strength: {{ player1.strength}}</li>
+          <li>Strength Modifier: {{ player1.strModifier }}</li>
+          <li>Dexterity: {{player1.dexterity }}</li>
+          <li>Dexterity Modifier: {{ player1.dexModifier }}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">    
+      </div>
+      <div class="col-md-4">
+        <ul class="stats">
+          <li>Player 2: {{ player2.name}}</li>
+          <li>Race: {{ player2.race }}</li>
+          <li>Class: {{ player2.chClass }}</li>
+          <li>Strength: {{ player2.strength}}</li>
+          <li>Strength Modifier: {{ player2.strModifier }}</li>
+          <li>Dexterity: {{player2.dexterity }}</li>
+          <li>Dexterity Modifier: {{ player2.dexModifier }}</li>
+        </ul>
+      </div>
     </div>
-<div>
-Probability of player 1 having initiative: {{ player1InitiativeProbability }} %
-Probability of player 2 having initiative: {{ player2InitiativeProbability }} %
-Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %
+    <div class="row">
+      <div class="col-md-4">
+        <p>Probability of player 1 having initiative: {{ player1InitiativeProbability }} % </p>
+        <p>Probability of player 2 having initiative: {{ player2InitiativeProbability }} % </p>
+        <p>Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %</p>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <p>player1HitProbability {{ player1HitProbability }}%</p>
+        <p>player2HitProbability {{ player2HitProbability }}%</p>
+        <p>player1KillProbability {{ player1KillProbability }}%</p>
+        <p>player2KillProbability {{ player2KillProbability }}%</p>
+      </div>
+      <div class="col-md-12">
+        {{ player1.weapon.showPossibleThrows()}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3" id="barbarian"></div>
+    <div class="col-md-6">
+      <app-initiative></app-initiative>
+    </div>
+    <div class="col-md-3" id="dwarf"></div>
+  </div>
+
 </div>
-<div>
-    Mace: {{ mace.printDamageType() }} showPossibleThrows: {{ mace.showPossibleThrows() }}
-</div>
-
-<app-initiative></app-initiative>
-
-

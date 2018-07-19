@@ -1,3 +1,6 @@
+import { Weapon } from './weapon.model';
+
+
 export class Character {
     public name: string;
 // RACE
@@ -33,7 +36,7 @@ export class Character {
         return this._strModifier;
     }
 
-    // DEX
+// DEX
     private _dexterity: number;
     get dexterity () {
         return this._dexterity;
@@ -48,12 +51,45 @@ export class Character {
         return this._dexModifier;
     }
 
+// ARMOR CLASS
+
+    private _armorClass: number;
+    get armorClass () {
+        return this._armorClass;
+    }
+    set armorClass (armC) {
+        this._armorClass = armC;
+    }
+
+// HIT POINTS
+
+    private _hitPoints: number;
+    get hitPoints () {
+        return this._hitPoints;
+    }
+    set hitPoints (hp) {
+        this._hitPoints = hp;
+    }
+
+// WEAPON
+
+    private _weapon: Weapon;
+    get weapon () {
+        return this._weapon;
+    }
+    set weapon (weap) {
+        this._weapon = weap;
+    }
+
 // CONSTRUCTOR
-    constructor (cName, cRace, cClass, cStr, cDex) {
+    constructor (cName, cRace, cClass, cStr, cDex, ac, hp, weap) {
         this.name = cName;
         this.race = cRace;
         this.chClass = cClass;
         this.strength = cStr;
         this.dexterity = cDex;
+        this.armorClass = ac;
+        this.hitPoints = hp;
+        this.weapon = weap;
     }
 }

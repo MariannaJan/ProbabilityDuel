@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { diceSpec } from './../dice.model';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class InitiativeComponent implements OnInit {
       text: 'Probability of succes of initiative roll vs opponent with chosen dexterity'
     },
     legend: {
-      position: 'right',
+      position: 'bottom',
       labels: {
         boxWidth: 10
       }
@@ -86,7 +87,7 @@ export class InitiativeComponent implements OnInit {
       'probPlayer2' : 0,
       'probTie' : 0
     };
-    const dice = 20;
+    const dice = diceSpec.d20;
     for (p1 = (1 + modifier1); p1 <= dice + modifier1; p1++) {
       for (p2 = 1 + modifier2; p2 <= dice + modifier2; p2++) {
         if (p1 === p2) {
