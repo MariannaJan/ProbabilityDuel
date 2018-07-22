@@ -1,6 +1,6 @@
 <div class="m-3">Select opponent dexterity:
-  <input type="range" min="1" max="30" [(ngModel)]="opponentDex" (ngModelChange)="dataChanged($event)"/>
-  {{ opponentDex }}</div>
+  <input type="range" min="1" max="30" [(ngModel)]="opponentDex" (ngModelChange)="dataChanged($event)"/>{{ opponentDex }} 
+</div>
 
 <div  id="initiative_chart">
   <canvas
@@ -9,8 +9,7 @@
       [datasets]="chartData"
       [labels]="chartLabels"
       [options]="chartOptions"
-      [legend]="true"
-      (chartClick)="onChartClick($event)">
+      [legend]="true">
   </canvas>
 </div>
 
