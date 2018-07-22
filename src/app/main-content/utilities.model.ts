@@ -6,3 +6,7 @@ export function  randomProperty(obj) {
 export function roundPercent (val) {
     return Math.round(val * 10000) / 100;
 }
+
+export function countModifier (stat) {
+    return Math.floor((stat - 10) / 2);
+}

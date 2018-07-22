@@ -3,10 +3,11 @@
   <div class="container">
     <div class="row" id="banner"></div>
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
         <ul class="stats">
-          <li>Player 1</li>
-          <li>{{ player1.name}}</li>
+          <li>Player</li>
+          <li>Name: {{ player1.name}}</li>
           <li>Race: {{ player1.race }}</li>
           <li>Class: {{ player1.chClass }}</li>
           <li>Strength: {{ player1.strength}}</li>
@@ -17,16 +18,16 @@
           <li>Armor type: {{ player1.armorType.armorName }}</li>
           <li>Weapon: {{ player1.weapon.name }}</li>
           <li>Damage type: {{ player1.weapon.printDamageType () }}</li>
+          <li>Probability of having initiative: {{ player1InitiativeProbability }} % </li>
+          <li>Probability of landing a hit: {{ player1HitProbability }}%</li>
+          <li> Probability of kill in one hit: {{ player1KillProbability }}%</li>
         </ul>
       </div>
-      <div class="col-md-6" id="playerChart">
-        <canvas baseChart [datasets]="playerChartData" [labels]="playerChartLabels" [chartType]="playerChartType" (chartHover)="chartHovered($event)"
-          (chartClick)="chartClicked($event)"></canvas>
-      </div>
-      <div class="col-md-3">
+      <div class="col-md-2" id="dice" (click)="diceClicked()"></div>
+      <div class="col-md-4 text-right ">
         <ul class="stats">
-          <li>Player 2</li>
-          <li>{{ player2.name}}</li>
+          <li>Opponent</li>
+          <li>Name: {{ player2.name}}</li>
           <li>Race: {{ player2.race }}</li>
           <li>Class: {{ player2.chClass }}</li>
           <li>Strength: {{ player2.strength}}</li>
@@ -37,29 +38,31 @@
           <li>Armor type: {{player2.armorType.armorName}}</li>
           <li>Weapon: {{ player2.weapon.name }}</li>
           <li>Damage type: {{ player2.weapon.printDamageType () }}</li>
+          <li>Probability of having initiative: {{ player2InitiativeProbability }} % </li>
+          <li>Probability of landing a hit: {{ player2HitProbability }}%</li>
+          <li> Probability of kill in one hit: {{ player2KillProbability }}%</li>
         </ul>
       </div>
+      <div class="col-md-1"></div>
     </div>
+
     <div class="row">
-      <div class="col-md-4">
-        <p>Probability of player 1 having initiative: {{ player1InitiativeProbability }} % </p>
-        <p>Probability of player 2 having initiative: {{ player2InitiativeProbability }} % </p>
+        <div class="col-md-3"></div>
+      <div class="col-md-6 text-center p-2">
         <p>Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %</p>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3"></div>
+    </div>
 
-      </div>
-      <div class="col-md-4">
-        <p>player1HitProbability {{ player1HitProbability }}%</p>
-        <p>player2HitProbability {{ player2HitProbability }}%</p>
-        <p>player1KillProbability {{ player1KillProbability }}%</p>
-        <p>player2KillProbability {{ player2KillProbability }}%</p>
-      </div>
-      <div class="col-md-12">
-        {{ player1.weapon.showPossibleThrows()}}
+    <div class="row">
+      <div class="col" id="playerChart">
+        <canvas baseChart [datasets]="playerChartData" [labels]="playerChartLabels" [chartType]="playerChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)" [options]="playerChartOptions"></canvas>
       </div>
     </div>
+    
   </div>
+
   <div class="row">
     <div class="col-md-3" id="barbarian"></div>
     <div class="col-md-6">

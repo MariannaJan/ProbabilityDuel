@@ -37,9 +37,17 @@
 
 .stats li:first-child {
     font-weight: bold;
+    font-size: 120%;
 }
 
 #playerChart {
     background-color: white;
     border: 1px solid black;
+    padding: 0px;
+}
+#dice {
+    background-image: url("../../assets/app-background-d20.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }

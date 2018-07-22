@@ -36,14 +36,32 @@ export class MainContentComponent implements OnInit {
   public playerChartData: any;
   public playerChartType = 'radar';
 
+  playerChartOptions = {
+    responsive: true,
+    title: {
+      display: true,
+      text: 'Probability of succes of initiative roll, landing a hit and killing with one hit'
+    },
+    legend: {
+      position: 'right',
+      labels: {
+        boxWidth: 10
+      }
+    },
+  };
+
   // events
-  public chartClicked(e: any): void {
+  /*public chartClicked(e: any): void {
     console.log(e);
     this.generateCharacters();
   }
 
   public chartHovered(e: any): void {
     console.log(e);
+  }*/
+
+  public diceClicked () {
+    this.generateCharacters();
   }
 
   countHitProb(player: Character, opponent: Character) {
@@ -66,6 +84,7 @@ export class MainContentComponent implements OnInit {
     const playerThrows = player.weapon.showPossibleThrows();
     let killProbability = 0;
     playerThrows.forEach(element => {
+      console.log(opponent.hitPoints);
       if (element >= opponent.hitPoints) {
         killProbability += 1;
       }
@@ -76,7 +95,7 @@ export class MainContentComponent implements OnInit {
   constructor() { }
 
   generateRandomCharacter () {
-    return new Character('', '', '', 0, 0, undefined, 8,
+    return new Character('', '', '', 0, 0, undefined, 0,
                 undefined);
   }
 

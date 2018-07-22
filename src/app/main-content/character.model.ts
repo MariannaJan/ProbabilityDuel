@@ -2,7 +2,7 @@ import { Armor, armorTypes } from './armor.model';
 import { NameGenerator } from './name.model';
 import { diceSpec } from './dice.model';
 import { Weapon, weaponTypes } from './weapon.model';
-import { randomProperty } from './utilities.model';
+import { randomProperty, countModifier } from './utilities.model';
 
 
 export class Character {
@@ -44,7 +44,7 @@ export class Character {
     set strength (strn) {
         if (strn === 0) { this._strength = this.rollAbility();
         } else {this._strength = strn; }
-        this._strModifier = Math.floor((this._strength - 10) / 2);
+        this._strModifier = countModifier(this._strength);
     }
     private _strModifier: number;
     get strModifier () {
@@ -59,12 +59,26 @@ export class Character {
     set dexterity (dex) {
         if (dex === 0) { this._dexterity = this.rollAbility();
         } else {this._dexterity = dex; }
-        this._dexModifier = Math.floor((this._dexterity - 10) / 2);
+        this._dexModifier = countModifier(this._dexterity);
     }
-
     private _dexModifier: number;
     get dexModifier () {
         return this._dexModifier;
+    }
+
+// CONSTITUTION
+    private _constitution: number;
+    get constitution () {
+        return this._constitution;
+    }
+    set constitution (con) {
+        if (con === 0) {this._constitution = this.rollAbility();
+        } else {this._constitution = con; }
+        this._conModifier = countModifier(this._constitution);
+    }
+    private _conModifier: number;
+    get conModifier () {
+        return this._conModifier;
     }
 
 // ARMOR TYPE
@@ -97,9 +111,7 @@ export class Character {
     get hitPoints () {
         return this._hitPoints;
     }
-    set hitPoints (hp) {
-        this._hitPoints = hp;
-    }
+
 
 // WEAPON
 
@@ -124,15 +136,16 @@ export class Character {
     }
 
     // CONSTRUCTOR
-    constructor (cName, cRace, cClass, cStr, cDex, armT, hp, weap) {
+    constructor (cName, cRace, cClass, cStr, cDex, armT, con, weap) {
         this.name = cName;
         this.race = cRace;
         this.chClass = cClass;
         this.strength = cStr;
         this.dexterity = cDex;
         this.armorType = armT;
-        this.hitPoints = hp;
+        this.constitution = con;
         this.weapon = weap;
+        this._hitPoints = charClasses[this._chClass].hpDice + this._conModifier;
     }
 }
 
@@ -147,48 +160,59 @@ export const charClasses = {
     barbarian: {
         clName: 'barbarian',
         armor: armorTypes.studded,
-        weapon: weaponTypes.greataxe },
+        weapon: weaponTypes.greataxe,
+        hpDice: diceSpec.d12 },
     bard: {
         clName: 'bard',
         armor: armorTypes.studded,
-        weapon: weaponTypes.longsword },
+        weapon: weaponTypes.longsword,
+        hpDice: diceSpec.d8 },
     cleric: {
         clName: 'cleric',
         armor: armorTypes.scaleMail,
-        weapon: weaponTypes.heavyMace },
+        weapon: weaponTypes.heavyMace,
+        hpDice: diceSpec.d8 },
     druid: {
         clName: 'druid',
         armor: armorTypes.hide,
-        weapon: weaponTypes.scimitar },
+        weapon: weaponTypes.scimitar,
+        hpDice: diceSpec.d8 },
     fighter: {
         clName: 'fighter',
         armor: armorTypes.scaleMail,
-        weapon: weaponTypes.greatsword },
+        weapon: weaponTypes.greatsword,
+        hpDice: diceSpec.d10 },
     monk: {
         clName: 'monk',
         armor: armorTypes.noArmor,
         // AC: 10 + this.abilityMods[1][1] + this.abilityMods[3][1],
-        weapon: weaponTypes.sling },
+        weapon: weaponTypes.sling,
+        hpDice: diceSpec.d8 },
     paladin: {
         clName: 'paladin',
         armor: armorTypes.scaleMail,
-        weapon: weaponTypes.longsword },
+        weapon: weaponTypes.longsword,
+        hpDice: diceSpec.d10 },
     ranger: {
         clName: 'ranger',
         armor: armorTypes.studded,
-        weapon: weaponTypes.longsword },
+        weapon: weaponTypes.longsword,
+        hpDice: diceSpec.d10 },
     rogue: {
         clName: 'rogue',
         armor: armorTypes.studded,
-        weapon: weaponTypes.shortSword },
+        weapon: weaponTypes.shortSword,
+        hpDice: diceSpec.d8 },
     sorcerer: {
         clName: 'sorcerer',
         armor: armorTypes.noArmor,
         // AC: 10 + this.abilityMods[1][1],
-        weapon: weaponTypes.crossbow },
+        weapon: weaponTypes.crossbow,
+        hpDice: diceSpec.d6 },
     wizard: {
         clName: 'wizard',
         armor: armorTypes.noArmor,
         // AC: 10 + this.abilityMods[1][1],
-        weapon: weaponTypes.crossbow
+        weapon: weaponTypes.crossbow,
+        hpDice: diceSpec.d6
 }};
