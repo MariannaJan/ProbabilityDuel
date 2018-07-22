@@ -1,10 +1,10 @@
+import { Armor, armorTypes } from './armor.model';
 import { diceSpec } from './dice.model';
-import { Weapon, damageTypes, numberOfDice } from './weapon.model';
+import { Weapon, damageTypes, numberOfDice, weaponTypes } from './weapon.model';
 import { Character } from './character.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { InitiativeComponent } from './initiative/initiative.component';
-
-
+import { roundPercent } from './utilities.model';
 
 
 
@@ -31,7 +31,23 @@ export class MainContentComponent implements OnInit {
   player1KillProbability: number;
   player2KillProbability: number;
 
-  countHitProb (player: Character, opponent: Character) {
+  public playerChartLabels: string[] = ['Initiative', 'Hit', 'Kill'];
+
+  public playerChartData: any;
+  public playerChartType = 'radar';
+
+  // events
+  public chartClicked(e: any): void {
+    console.log(e);
+    this.generateCharacters();
+    console.log(this.player2.armorType);
+  }
+
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
+
+  countHitProb(player: Character, opponent: Character) {
     const fighter = player;
     const enemy = opponent;
     let fighterWins = 0;
@@ -44,7 +60,7 @@ export class MainContentComponent implements OnInit {
         fighterWins += 1;
       }
     }
-    return Math.round((fighterWins / diceSpec.d20) * 10000) / 100;
+    return roundPercent(fighterWins / diceSpec.d20);
   }
 
   countKillProbability(player: Character, opponent: Character) {
@@ -55,15 +71,20 @@ export class MainContentComponent implements OnInit {
         killProbability += 1;
       }
     });
-    return (Math.round((killProbability / playerThrows.length) * 10000)) / 100;
+    return roundPercent(killProbability / playerThrows.length);
   }
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {
-    this.mace = new Weapon(damageTypes.BLUDGEONING, numberOfDice.TWO, 6);
-    this.player1 = new Character('Alice', 'Elf', 'Rogue', 5, 18, 15, 8, new Weapon(damageTypes.PIERCING, numberOfDice.TWO, diceSpec.d6));
-    this.player2 = new Character('Conrad', 'Human', 'Fighter', 16, 10, 15, 10, this.mace);
+  generateRandomCharacter () {
+    return new Character('', '', '', 0, 0, undefined, 8,
+                new Weapon(weaponTypes.greatsword));
+  }
+
+  generateCharacters() {
+
+    this.player1 = this.generateRandomCharacter();
+    this.player2 = this.generateRandomCharacter();
 
     const initiative = this.initComp.countInitiative(this.player1.dexterity, this.player2.dexterity);
     this.player1InitiativeProbability = initiative.probPlayer1;
@@ -75,6 +96,13 @@ export class MainContentComponent implements OnInit {
 
     this.player1KillProbability = this.countKillProbability(this.player1, this.player2);
     this.player2KillProbability = this.countKillProbability(this.player2, this.player1);
+
+    this.playerChartData = [
+      { data: [this.player1InitiativeProbability, this.player1HitProbability, this.player1KillProbability], label: 'Player 1' },
+      { data: [this.player2InitiativeProbability, this.player2HitProbability, this.player2KillProbability], label: 'Player 2' }
+    ];
   }
 
+
+  ngOnInit() { this.generateCharacters(); }
 }

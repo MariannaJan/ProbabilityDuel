@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { diceSpec } from './../dice.model';
+import { roundPercent } from './../utilities.model';
 
 
 @Component({
@@ -100,9 +101,9 @@ export class InitiativeComponent implements OnInit {
       }
     }
 
-    results.probPlayer1 = Math.round((P1Wins / (dice  * dice)) * 10000) / 100;
-    results.probPlayer2  = Math.round((P2Wins / (dice  * dice)) * 10000) / 100;
-    results.probTie = Math.round((tie  / (dice * dice)) * 10000) / 100;
+    results.probPlayer1 = roundPercent(P1Wins / (dice  * dice));
+    results.probPlayer2  = roundPercent(P2Wins / (dice  * dice));
+    results.probTie = roundPercent(tie  / (dice * dice));
 
     return results;
   }

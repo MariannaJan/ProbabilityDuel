@@ -38,3 +38,8 @@
 .stats li:first-child {
     font-weight: bold;
 }
+
+#playerChart {
+    background-color: white;
+    border: 1px solid black;
+}

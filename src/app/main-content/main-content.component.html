@@ -3,28 +3,40 @@
   <div class="container">
     <div class="row" id="banner"></div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-3">
         <ul class="stats">
-          <li>Player 1: {{ player1.name}}</li>
+          <li>Player 1</li>
+          <li>{{ player1.name}}</li>
           <li>Race: {{ player1.race }}</li>
           <li>Class: {{ player1.chClass }}</li>
           <li>Strength: {{ player1.strength}}</li>
           <li>Strength Modifier: {{ player1.strModifier }}</li>
           <li>Dexterity: {{player1.dexterity }}</li>
           <li>Dexterity Modifier: {{ player1.dexModifier }}</li>
+          <li>Armor class: {{player1.armorClass}}</li>
+          <li>Armor type: {{player1.armorType.armorName}}</li>
         </ul>
       </div>
-      <div class="col-md-4">    
+      <div class="col-md-6" id="playerChart"> 
+          <canvas baseChart
+  [datasets]="playerChartData"
+  [labels]="playerChartLabels"
+  [chartType]="playerChartType"
+  (chartHover)="chartHovered($event)"
+  (chartClick)="chartClicked($event)"></canvas>   
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <ul class="stats">
-          <li>Player 2: {{ player2.name}}</li>
+          <li>Player 2</li>
+          <li>{{ player2.name}}</li>
           <li>Race: {{ player2.race }}</li>
           <li>Class: {{ player2.chClass }}</li>
           <li>Strength: {{ player2.strength}}</li>
           <li>Strength Modifier: {{ player2.strModifier }}</li>
           <li>Dexterity: {{player2.dexterity }}</li>
           <li>Dexterity Modifier: {{ player2.dexModifier }}</li>
+          <li>Armor class: {{player2.armorClass}}</li>
+          <li>Armor type: {{player2.armorType.armorName}}</li>
         </ul>
       </div>
     </div>
@@ -34,7 +46,9 @@
         <p>Probability of player 2 having initiative: {{ player2InitiativeProbability }} % </p>
         <p>Probability of tie in the initiative roll: {{ tieInitiativeProbability }} %</p>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-4">
+
+      </div>
       <div class="col-md-4">
         <p>player1HitProbability {{ player1HitProbability }}%</p>
         <p>player2HitProbability {{ player2HitProbability }}%</p>
@@ -53,5 +67,7 @@
     </div>
     <div class="col-md-3" id="dwarf"></div>
   </div>
+
+
 
 </div>
