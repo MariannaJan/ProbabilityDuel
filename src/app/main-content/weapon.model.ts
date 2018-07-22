@@ -14,6 +14,15 @@ export const enum numberOfDice {
 
 export class Weapon {
 
+// weapon name
+    private _name: string;
+    get name () {
+        return this._name;
+    }
+    set name (name) {
+        this._name = name;
+    }
+
 // damage type
     private _damageType: damageTypes;
     get damageType () {
@@ -43,6 +52,7 @@ export class Weapon {
 
 // constructor
     constructor (weaponSpec) {
+        this.name = weaponSpec.wName;
         this.damageType = weaponSpec.damType;
         this.numOfDice = weaponSpec.numD;
         this.diceSides = weaponSpec.diceS;
@@ -81,40 +91,48 @@ export class Weapon {
 
 export const weaponTypes = {
     greataxe: {
+        wName: 'greataxe',
         damType: damageTypes.SLASHING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d12},
     longsword: {
+        wName: 'longsword',
         damType: damageTypes.SLASHING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d8
     },
     heavyMace: {
+        wName: 'heavy mace',
         damType: damageTypes.BLUDGEONING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d6
     },
     scimitar: {
+        wName: 'scimitar',
         damType: damageTypes.SLASHING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d6
     },
     greatsword: {
+        wName: 'greatsword',
         damType: damageTypes.SLASHING,
         numD: numberOfDice.TWO,
         diceS: diceSpec.d6
     },
     sling: {
+        wName: 'sling',
         damType: damageTypes.BLUDGEONING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d4
     },
     shortSword: {
+        wName: 'short sword',
         damType: damageTypes.PIERCING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d6
     },
     crossbow: {
+        wName: 'crossbow',
         damType: damageTypes.PIERCING,
         numD: numberOfDice.ONE,
         diceS: diceSpec.d6

@@ -11,19 +11,17 @@
           <li>Class: {{ player1.chClass }}</li>
           <li>Strength: {{ player1.strength}}</li>
           <li>Strength Modifier: {{ player1.strModifier }}</li>
-          <li>Dexterity: {{player1.dexterity }}</li>
+          <li>Dexterity: {{ player1.dexterity }}</li>
           <li>Dexterity Modifier: {{ player1.dexModifier }}</li>
-          <li>Armor class: {{player1.armorClass}}</li>
-          <li>Armor type: {{player1.armorType.armorName}}</li>
+          <li>Armor class: {{ player1.armorClass }}</li>
+          <li>Armor type: {{ player1.armorType.armorName }}</li>
+          <li>Weapon: {{ player1.weapon.name }}</li>
+          <li>Damage type: {{ player1.weapon.printDamageType () }}</li>
         </ul>
       </div>
-      <div class="col-md-6" id="playerChart"> 
-          <canvas baseChart
-  [datasets]="playerChartData"
-  [labels]="playerChartLabels"
-  [chartType]="playerChartType"
-  (chartHover)="chartHovered($event)"
-  (chartClick)="chartClicked($event)"></canvas>   
+      <div class="col-md-6" id="playerChart">
+        <canvas baseChart [datasets]="playerChartData" [labels]="playerChartLabels" [chartType]="playerChartType" (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
       </div>
       <div class="col-md-3">
         <ul class="stats">
@@ -37,6 +35,8 @@
           <li>Dexterity Modifier: {{ player2.dexModifier }}</li>
           <li>Armor class: {{player2.armorClass}}</li>
           <li>Armor type: {{player2.armorType.armorName}}</li>
+          <li>Weapon: {{ player2.weapon.name }}</li>
+          <li>Damage type: {{ player2.weapon.printDamageType () }}</li>
         </ul>
       </div>
     </div>

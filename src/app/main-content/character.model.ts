@@ -74,7 +74,6 @@ export class Character {
         return this._armorType;
     }
     set armorType (armT) {
-        console.log(armT);
         if (armT === undefined) {
             this._armorType = new Armor(charClasses[this._chClass].armor);
         } else {this._armorType = armT; }
@@ -109,7 +108,9 @@ export class Character {
         return this._weapon;
     }
     set weapon (weap) {
-        this._weapon = weap;
+        if (weap === undefined) {
+            this._weapon = new Weapon(charClasses[this._chClass].weapon);
+        } else {this._weapon = weap; }
     }
 
 // ABILITY GENERATOR

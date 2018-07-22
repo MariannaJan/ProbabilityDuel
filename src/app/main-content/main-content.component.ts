@@ -40,7 +40,6 @@ export class MainContentComponent implements OnInit {
   public chartClicked(e: any): void {
     console.log(e);
     this.generateCharacters();
-    console.log(this.player2.armorType);
   }
 
   public chartHovered(e: any): void {
@@ -78,7 +77,7 @@ export class MainContentComponent implements OnInit {
 
   generateRandomCharacter () {
     return new Character('', '', '', 0, 0, undefined, 8,
-                new Weapon(weaponTypes.greatsword));
+                undefined);
   }
 
   generateCharacters() {
